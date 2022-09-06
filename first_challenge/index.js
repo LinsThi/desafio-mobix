@@ -22,7 +22,7 @@ function Ampulheta(quantityLine) {
   for (var currentLine = 1; currentLine < quantityLine; currentLine++) {
     var line = generateLine(quantityLine);
 
-    if (currentLine < 10) {
+    if (currentLine < quantityLine / 2) {
       for (
         var colum = currentLine;
         colum <= quantityLine - currentLine;
