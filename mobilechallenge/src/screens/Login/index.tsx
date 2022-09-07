@@ -1,5 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {TextInput} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 
 import * as Sty from './styles';
 
@@ -8,9 +9,12 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  const {navigate} = useNavigation();
+
   const handleLogin = useCallback(() => {
     console.log(email, password);
-  }, [email, password]);
+    navigate('Home' as never);
+  }, [email, password, navigate]);
 
   const handleTogglePassword = useCallback(() => {
     setShowPassword(prev => !prev);

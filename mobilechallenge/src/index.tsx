@@ -1,11 +1,13 @@
 import React from 'react';
+import {StatusBar} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
-import {Login} from './screens/Login';
+import {AppRoutes} from './routes';
 
 export default function App() {
   return (
     <PaperProvider>
-      <Login />
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+      <AppRoutes />
     </PaperProvider>
   );
 }
