@@ -16,8 +16,6 @@ export function Home() {
   const [pokemonArray, setPokemonArray] = useState<PokemonProps[]>([]);
 
   const loadingRequestAPI = useCallback(() => {
-    // setLoading(true);
-
     axios.get(nextUrl).then((response: ResponseProps) => {
       const arrayPoke: PokemonProps[] = [...pokemonArray];
       setNextUrl(response.data.next);
@@ -29,7 +27,6 @@ export function Home() {
         }
 
         setPokemonArray(arrayPoke);
-        // setLoading(false);
       }
 
       GetInfoPokemons();
