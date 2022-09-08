@@ -1,6 +1,11 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback} from 'react';
 import {ActivityIndicator} from 'react-native';
-import {BackgroundColorPokemonType, PokemonProps} from '../../dtos/Pokemon';
+import {
+  BackgroundColorPokemonType,
+  PokemonProps,
+  PropsKeyColor,
+} from '../../dtos/Pokemon';
 
 import * as Sty from './styles';
 
@@ -10,12 +15,18 @@ type FlatListProps = {
 };
 
 export function FlatListPokemon({arrayPoke, RequestAPI}: FlatListProps) {
+  const {navigate} = useNavigation();
+
   const renderItem = useCallback(({item}: {item: PokemonProps}) => {
     const type = item.types[0].type.name;
 
     return (
-      <Sty.ContainerItem bgColor={BackgroundColorPokemonType[type]}>
-        <Sty.ImagePokemon source={{uri: item.sprites.front_default}} />
+      <Sty.ContainerItem
+        bgColor={BackgroundColorPokemonType[type as PropsKeyColor]}
+        onPress={() => navigate('Pokemon', {pokemonInfo: item})}>
+        <Sty.ImagePokemon
+          source={{uri: item.sprites.other['official-artwork'].front_default}}
+        />
 
         <Sty.ContainerNamePokemon>
           <Sty.NamePokemon>{item.name}</Sty.NamePokemon>

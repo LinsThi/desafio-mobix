@@ -37,7 +37,7 @@ export const ContainerNamePokemon = styled.View`
 `;
 
 export const ImagePokemon = styled.Image`
-  width: 150px;
+  width: 100px;
   height: 100px;
 
   position: absolute;
