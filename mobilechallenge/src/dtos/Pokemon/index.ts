@@ -1,7 +1,14 @@
+export type SpritesProps = {
+  front_default: string;
+};
+
 export type PokemonProps = {
+  id: number;
   name: string;
   sprites: {
-    front_default: string;
+    other: {
+      'official-artwork': SpritesProps;
+    };
   };
   types: [
     {
@@ -10,6 +17,33 @@ export type PokemonProps = {
       };
     },
   ];
+  height: number;
+  abilities: [
+    {
+      ability: {
+        name: string;
+      };
+    },
+  ];
+  stats: [
+    {
+      base_stat: number;
+      stat: {
+        name: string;
+      };
+    },
+  ];
+};
+
+export type SpeciesProps = {
+  egg_groups: [
+    {
+      name: string;
+    },
+  ];
+  evolves_from_species: {
+    name: string | null;
+  };
 };
 
 export const BackgroundColorPokemonType = {
@@ -34,3 +68,5 @@ export const BackgroundColorPokemonType = {
   unknown: '#339686',
   shadow: '#632ea6',
 };
+
+export type PropsKeyColor = keyof typeof BackgroundColorPokemonType;
