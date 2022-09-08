@@ -1,6 +1,10 @@
 import React, {useState, useCallback} from 'react';
+import {Alert} from 'react-native';
 import {TextInput} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
+
+import {handleLoginApp} from '../../store/ducks/user/action';
+import {useAppDispatch} from '../../store/hooks/useDispatchApp';
+import {DBUsers} from './mock';
 
 import * as Sty from './styles';
 
@@ -9,12 +13,19 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const {navigate} = useNavigation();
+  const dispath = useAppDispatch();
 
   const handleLogin = useCallback(() => {
-    console.log(email, password);
-    navigate('Home' as never);
-  }, [email, password, navigate]);
+    const correctUser = DBUsers.find(
+      user => user.email === email && user.password === password,
+    );
+
+    if (correctUser) {
+      dispath(handleLoginApp());
+    } else {
+      Alert.alert('Opa, calma ai!', 'Usuário ou senha incorreta');
+    }
+  }, [email, password, dispath]);
 
   const handleTogglePassword = useCallback(() => {
     setShowPassword(prev => !prev);
